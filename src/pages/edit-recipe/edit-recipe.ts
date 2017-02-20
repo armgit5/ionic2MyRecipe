@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams, ActionSheetController, AlertController } from 'ionic-angular';
+import { NavParams, ActionSheetController, AlertController, ToastController, NavController } from 'ionic-angular';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { RecipesService } from '../../services/recipes';
 
 
 @Component({
@@ -15,7 +16,10 @@ export class EditRecipePage implements OnInit {
 
   constructor(private navParams: NavParams,
               private actionSheetController: ActionSheetController,
-              private alertCtrl: AlertController) {}
+              private alertCtrl: AlertController,
+              private toastCtrl: ToastController,
+              private recipesService: RecipesService,
+              private navCtrl: NavController) {}
 
   ngOnInit() {
     this.mode = this.navParams.get('mode');
@@ -23,7 +27,17 @@ export class EditRecipePage implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.recipeForm);
+    const value = this.recipeForm.value;
+    let ingredients = [];
+    if (value.ingredients.length > 0) {
+      ingredients = value.ingredients.map(name => {
+        return {name: name, amount: 1};
+      })
+    }
+    this.recipesService.addRecipe(value.title, value.description, value.difficulty, 
+      ingredients);
+    this.recipeForm.reset();
+    this.navCtrl.popToRoot();
   }
 
   onManageIndredients() {
@@ -46,6 +60,12 @@ export class EditRecipePage implements OnInit {
               for (let i = len-1; i >= 0; i--) {
                 fArray.removeAt(i);
               }
+              const toast = this.toastCtrl.create({
+                message: 'All Ingredients were deleted!',
+                duration: 1500,
+                position: 'bottom'
+              });
+              toast.present();
             }
           }
         },
@@ -76,10 +96,22 @@ export class EditRecipePage implements OnInit {
           text: 'Add',
           handler: data => {
             if (data.name.trim() == '' || data.name == null) {
+              const toast = this.toastCtrl.create({
+                message: 'Please enter a valid value!',
+                duration: 1500,
+                position: 'bottom'
+              });
+              toast.present();
               return;
             }
             (<FormArray>this.recipeForm.get('ingredients'))
               .push(new FormControl(data.name, Validators.required));
+            const toast = this.toastCtrl.create({
+              message: 'Item added',
+              duration: 1500,
+              position: 'bottom'
+            });
+            toast.present();
           }
         }
       ]

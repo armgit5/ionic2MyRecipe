@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { Recipe } from '../../models/recipes';
 import { EditRecipePage } from '../edit-recipe/edit-recipe';
 import { ShoppingListService } from '../../services/shopping-list';
@@ -17,7 +17,9 @@ export class RecipePage implements OnInit {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private slService: ShoppingListService,
-              private recipesService: RecipesService) {}
+              private recipesService: RecipesService,
+              private toastCtrl: ToastController,
+              private alertCtrl: AlertController,) {}
 
   ngOnInit() {
     this.recipe = this.navParams.get('recipe');
@@ -31,11 +33,34 @@ export class RecipePage implements OnInit {
 
   onAddIngredients() {
     this.slService.addItems(this.recipe.ingredients);
+    const toast = this.toastCtrl.create({
+      message: 'Ingredients have been added to the shopping list',
+      duration: 1500,
+      position: 'bottom'
+    });
+    toast.present();
+    this.navCtrl.popToRoot();
   }
 
   onDeleteRecipe() {
-    this.recipesService.removeRecipe(this.index);
-    this.navCtrl.popToRoot();
+
+    this.alertCtrl.create({
+      title: 'Are you sure you want to delete?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.recipesService.removeRecipe(this.index);
+            this.navCtrl.popToRoot();
+          }
+        }]
+    }).present();
+
+    
   }
 
 }

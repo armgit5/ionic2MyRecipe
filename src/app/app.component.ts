@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-
-import { Platform } from 'ionic-angular';
-
+import { Component, ViewChild } from '@angular/core';
+import { Platform, NavController, MenuController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { TabsPage } from '../pages/tabs/tabs';
+import { SigninPage } from '../pages/signin/signin';
+import { SignupPage } from '../pages/signup/signup';
 
 
 @Component({
@@ -13,10 +13,14 @@ import { TabsPage } from '../pages/tabs/tabs';
 export class MyApp {
 
   // make HelloIonicPage the root (or first) page
-  rootPage: any = TabsPage;
+  tabsPage: any = TabsPage;
+  signinPage: any = SigninPage;
+  signupPage = SignupPage;
+  @ViewChild('nav') nav: NavController;
 
   constructor(
-    public platform: Platform
+    public platform: Platform,
+    private menuCtrl: MenuController
   ) {
     this.initializeApp();
   }
@@ -29,4 +33,13 @@ export class MyApp {
       Splashscreen.hide();
     });
   }  
+
+  onLoad(page: any) {
+    this.nav.setRoot(page);
+    this.menuCtrl.close();
+  }
+
+  onLogout() {
+    
+  }
 }

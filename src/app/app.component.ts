@@ -5,7 +5,8 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { TabsPage } from '../pages/tabs/tabs';
 import { SigninPage } from '../pages/signin/signin';
 import { SignupPage } from '../pages/signup/signup';
-
+import firebase from 'firebase';
+import { AuthService } from '../services/auth';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,12 +17,29 @@ export class MyApp {
   tabsPage: any = TabsPage;
   signinPage: any = SigninPage;
   signupPage = SignupPage;
+  isAuthenticated = false;
   @ViewChild('nav') nav: NavController;
 
   constructor(
     public platform: Platform,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private authCtrl: AuthService
   ) {
+    firebase.initializeApp({
+      apiKey: "AIzaSyBme1h97pwfn286doTbi1UBKGQwGHqmmmA",
+      authDomain: "angular2-course-37876.firebaseapp.com"
+    });
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.isAuthenticated = true;
+        this.tabsPage = TabsPage;
+      } else {
+        this.isAuthenticated = false;
+        this.tabsPage = SigninPage;
+      }
+    });
+
     this.initializeApp();
   }
 
@@ -40,6 +58,8 @@ export class MyApp {
   }
 
   onLogout() {
-    
+    this.authCtrl.logout();
+    this.menuCtrl.close();
+    this.nav.setRoot(SigninPage);
   }
 }

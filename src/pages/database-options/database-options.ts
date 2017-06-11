@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ViewController } from "ionic-angular";
 
 @Component({
-    selector: 'page-sl-options',
-    templateUrl: 'sl-options.html'
+    selector: 'database-options',
+    templateUrl: 'database-options.html'
 })
 
-export class SLOptionsPage {
+export class DatabaseOptionsPage {
 
     constructor(private viewCtrl: ViewController) {
         

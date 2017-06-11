@@ -3,8 +3,8 @@ import { NgForm } from '@angular/forms';
 import { ShoppingListService } from '../../services/shopping-list';
 import { Ingredient } from '../../models/ingredient';
 import { PopoverController, LoadingController, AlertController } from 'ionic-angular';
-import { SLOptionsPage } from './sl-options/sl-options';
 import { AuthService } from '../../services/auth';
+import { DatabaseOptionsPage } from '../database-options/database-options';
 
 @Component({
   selector: 'page-shopping-list',
@@ -45,11 +45,13 @@ export class ShoppingListPage {
       const loading = this.loadingCtrl.create({
         content: 'Please wait...'
       });
-      const popover = this.popOverCtrl.create(SLOptionsPage);
+      const popover = this.popOverCtrl.create(DatabaseOptionsPage);
       popover.present({ev: event});
       popover.onDidDismiss(
         data => {
-          if (data.action == 'load') {
+          if (data == null) {
+            console.log("no action");
+          } else if (data.action == 'load') {
             loading.present();
             this.authService.getActiveUser().getIdToken()
               .then(

@@ -19,7 +19,8 @@ export class RecipePage implements OnInit {
               private slService: ShoppingListService,
               private recipesService: RecipesService,
               private toastCtrl: ToastController,
-              private alertCtrl: AlertController,) {}
+              private alertCtrl: AlertController
+              ) {}
 
   ngOnInit() {
     this.recipe = this.navParams.get('recipe');
@@ -58,9 +59,7 @@ export class RecipePage implements OnInit {
             this.navCtrl.popToRoot();
           }
         }]
-    }).present();
-
-    
+    }).present();  
   }
 
 }

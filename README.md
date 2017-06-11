@@ -2,10 +2,9 @@
 
 This app is created using Ionic 2 framework. You can create recipes and add recipe ingredients on the shopping list.
 
-![simulator screen shot jun 11 2560 be 3 53 20 pm](https://user-images.githubusercontent.com/3277669/27009669-5756bace-4ebe-11e7-88f2-ddd77c57f9c5.png)
-![simulator screen shot jun 11 2560 be 3 53 29 pm](https://user-images.githubusercontent.com/3277669/27009670-578759ae-4ebe-11e7-9c57-1c4232ff559f.png)
-![simulator screen shot jun 11 2560 be 3 53 34 pm](https://user-images.githubusercontent.com/3277669/27009672-579e1a7c-4ebe-11e7-9b95-de88b4dc7cf4.png)
-![simulator screen shot jun 11 2560 be 3 53 59 pm](https://user-images.githubusercontent.com/3277669/27009671-579d6366-4ebe-11e7-83e7-8f3292363451.png)
-![simulator screen shot jun 11 2560 be 3 54 06 pm](https://user-images.githubusercontent.com/3277669/27009674-57a86d56-4ebe-11e7-94f4-533947ee09c3.png)
-![simulator screen shot jun 11 2560 be 3 54 16 pm](https://user-images.githubusercontent.com/3277669/27009673-57a85a5a-4ebe-11e7-9b73-e28b4b1eadb7.png)
-
+![simulator screen shot jun 11 2560 be 3 53 20 pm](https://user-images.githubusercontent.com/3277669/27009713-75a667b2-4ebf-11e7-88d9-56f944263e68.png)
+![simulator screen shot jun 11 2560 be 3 53 29 pm](https://user-images.githubusercontent.com/3277669/27009714-75a6d508-4ebf-11e7-8b0c-045bd14ffd99.png)
+![simulator screen shot jun 11 2560 be 3 53 34 pm](https://user-images.githubusercontent.com/3277669/27009715-75d7339c-4ebf-11e7-8398-437db9151840.png)
+![simulator screen shot jun 11 2560 be 3 53 59 pm](https://user-images.githubusercontent.com/3277669/27009716-75da435c-4ebf-11e7-8c86-f76f29cb9a39.png)
+![simulator screen shot jun 11 2560 be 3 54 06 pm](https://user-images.githubusercontent.com/3277669/27009717-75e5bf20-4ebf-11e7-914d-9345472dafdf.png)
+![simulator screen shot jun 11 2560 be 3 54 16 pm](https://user-images.githubusercontent.com/3277669/27009718-75ea0b20-4ebf-11e7-8dbc-4f7bace5f48a.png)
